@@ -1,0 +1,239 @@
+/* ============================================================
+   ABPC — Design System
+   Style gouvernemental béninois — moderne et professionnel
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+/* ── Variables ──────────────────────────────────────────────── */
+:root {
+  --navy:        #0B1E3D;
+  --navy-mid:    #1A3560;
+  --blue:        #1E56A0;
+  --blue-light:  #2E73CC;
+  --accent:      #D4A017;
+  --accent-light:#F5C842;
+  --danger:      #C0392B;
+  --danger-light:#F8D7DA;
+  --warning:     #E67E22;
+  --warning-light:#FDEBD0;
+  --success:     #1E8449;
+  --success-light:#D5F5E3;
+
+  --bg:          #F4F6FA;
+  --surface:     #FFFFFF;
+  --surface-2:   #F0F3F9;
+  --border:      #DDE3EE;
+  --border-dark: #B8C4D8;
+
+  --text-primary:   #0B1E3D;
+  --text-secondary: #4A5B7A;
+  --text-muted:     #8A9BBB;
+
+  --shadow-sm:  0 1px 4px rgba(11,30,61,0.06);
+  --shadow-md:  0 4px 16px rgba(11,30,61,0.10);
+  --shadow-lg:  0 8px 32px rgba(11,30,61,0.14);
+  --shadow-xl:  0 16px 48px rgba(11,30,61,0.18);
+
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+
+  --font-display: 'Sora', sans-serif;
+  --font-body:    'IBM Plex Sans', sans-serif;
+}
+
+/* ── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font-body); cursor: pointer; }
+input, select, textarea { font-family: var(--font-body); }
+
+/* ── Animations ─────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.animate-fadeUp  { animation: fadeUp 0.5s ease forwards; }
+.animate-fadeIn  { animation: fadeIn 0.4s ease forwards; }
+
+/* Staggered children */
+.stagger > *:nth-child(1) { animation-delay: 0.05s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.20s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.20s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; opacity: 0; animation: fadeUp 0.5s ease forwards 0.25s; }
+
+/* ── Composants globaux ─────────────────────────────────────── */
+
+/* Badges gravité */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+.badge-rouge   { background: var(--danger-light);  color: var(--danger); }
+.badge-orange  { background: var(--warning-light); color: var(--warning); }
+.badge-jaune   { background: #FEF9C3; color: #854D0E; }
+.badge-nouveau { background: #DBEAFE; color: #1D4ED8; }
+.badge-en_cours{ background: var(--warning-light); color: var(--warning); }
+.badge-cloture { background: var(--success-light); color: var(--success); }
+
+/* Boutons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(30,86,160,0.3);
+}
+.btn-primary:hover {
+  background: var(--blue-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(30,86,160,0.4);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(192,57,43,0.3);
+}
+.btn-danger:hover {
+  background: #E74C3C;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--blue);
+  border: 1.5px solid var(--border-dark);
+}
+.btn-ghost:hover {
+  background: var(--surface-2);
+  border-color: var(--blue);
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 15px;
+}
+
+.btn-full { width: 100%; }
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Inputs */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--surface);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(30,86,160,0.12);
+}
+
+.input-group .error-msg {
+  font-size: 12px;
+  color: var(--danger);
+  font-weight: 500;
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-dark); border-radius: 3px; }
