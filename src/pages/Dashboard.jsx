@@ -415,13 +415,13 @@ export default function Dashboard() {
                         <div style={D.actionPanel} className="animate-fadeIn" onClick={e => e.stopPropagation()}>
                           <div style={D.actionTitle}>Actions disponibles</div>
                           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                            {s.statut !== 'en_cours' && s.statut !== 'cloture' && (
+                            {s.statut === 'nouveau' && (
                               <button onClick={() => updateStatut(s.id, 'en_cours')}
                                 style={{ ...D.actionBtn, background: '#FFFBEB', color: '#D97706', borderColor: '#FCD34D' }}>
                                 ⚡ Prendre en charge
                               </button>
                             )}
-                            {s.statut !== 'cloture' && (
+                            {s.statut === 'en_cours' && (
                               <button onClick={() => updateStatut(s.id, 'cloture')}
                                 style={{ ...D.actionBtn, background: '#F0FDF4', color: '#065F46', borderColor: '#6EE7B7' }}>
                                 ✅ Clôturer
